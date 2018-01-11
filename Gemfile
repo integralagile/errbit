@@ -112,5 +112,7 @@ gem 'underscore-rails'
 
 gem 'sucker_punch'
 
+gem 'errbit_gitlab_plugin'
+
 ENV['USER_GEMFILE'] ||= './UserGemfile'
 eval_gemfile ENV['USER_GEMFILE'] if File.exist?(ENV['USER_GEMFILE'])
