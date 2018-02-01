@@ -1,9 +1,16 @@
 #!/bin/zsh
-git merge origin master
-docker build -t errbit .
-docker login
-docker push integralagile/errbit:latest
-eval $(docker-machine env integralagile-errbit)
-docker-compose down
-docker-compose pull errbit
-docker-compose up -d
+#update the fork
+git fetch upstream
+git checkout master
+git rebase upstream/master
+git push -f origin master
+git checkout integral-agile-customization
+if git merge master; then
+  docker build -t errbit .
+  docker login
+  docker push integralagile/errbit:latest
+  eval $(docker-machine env integralagile-errbit)
+  docker-compose down
+  docker-compose pull errbit
+  docker-compose up -d
+fi
