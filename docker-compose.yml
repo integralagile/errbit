@@ -1,19 +1,25 @@
-errbit:
-  image: integralagile/errbit:latest
-  ports:
-    - "80:8080"
-  links:
-    - mongo
-  environment:
-    - PORT=8080
-    - RACK_ENV=production
-    - ERRBIT_HOST=errbit.integralagile.com
-    - ERRBIT_EMAIL_FROM=notifier@integralagile.com
-    - MONGO_URL=mongodb://mongo:27017/errbit
-    - SECRET_KEY_BASE=4ee705180e3dcefb2dce9cface8c1adf488c350058805d01e8156d1a4c3e4806565327d2c113165df95ef87160c548f1277f13b17528819ef4c97c338dd1f65f
-mongo:
-  image: mongo:3.4
-  ports:
-    - "27017"
-  volumes:
-    - '/var/data/db:/data/db'
+version: '3'
+
+services:
+  errbit:
+    image: integralagile/errbit:latest
+    ports:
+      - "80:8080"
+    links:
+      - mongo
+    restart: unless-stopped
+    environment:
+      - PORT=8080
+      - RACK_ENV=production
+      - ERRBIT_HOST=errbit.integralagile.com
+      - ERRBIT_EMAIL_FROM=notifier@integralagile.com
+      - MONGO_URL=mongodb://mongo:27017/errbit
+      - SECRET_KEY_BASE=4ee705180e3dcefb2dce9cface8c1adf488c350058805d01e8156d1a4c3e4806565327d2c113165df95ef87160c548f1277f13b17528819ef4c97c338dd1f65f
+
+  mongo:
+    image: mongo:3.4
+    ports:
+      - "27017"
+    restart: unless-stopped
+    volumes:
+      - '/var/data/db:/data/db'
