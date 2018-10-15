@@ -1,16 +1,19 @@
 #!/bin/zsh
 #update the fork
+#BE SURE TO not be in a docker-machine session
 git fetch upstream
 git checkout master
 git rebase upstream/master
 git push -f origin master
 git checkout integral-agile-customization
 if git merge master; then
+  bundle install
   docker build -t errbit .
-  docker login
+  docker login -u integralagile --password-stdin
   docker push integralagile/errbit:latest
   eval $(docker-machine env integralagile-errbit)
-  docker-compose down
+  docker login -u integralagile --password-stdin
   docker-compose pull errbit
+  docker-compose down
   docker-compose up -d
 fi

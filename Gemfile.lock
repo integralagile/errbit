@@ -107,6 +107,9 @@ GEM
     errbit_github_plugin (0.3.0)
       errbit_plugin
       octokit
+    errbit_gitlab_plugin (1.0.1)
+      errbit_plugin (~> 0.5, >= 0.5.0)
+      gitlab (~> 3.4, >= 3.4.0)
     errbit_plugin (0.6.0)
     erubi (1.7.1)
     erubis (2.7.0)
@@ -121,6 +124,9 @@ GEM
       multi_json
     font-awesome-rails (4.2.0.0)
       railties (>= 3.2, < 5.0)
+    gitlab (3.6.1)
+      httparty
+      terminal-table
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     haml (4.0.7)
@@ -391,6 +397,8 @@ GEM
       concurrent-ruby (~> 1.0.0)
     term-ansicolor (1.6.0)
       tins (~> 1.0)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
@@ -444,6 +452,7 @@ DEPENDENCIES
   draper
   email_spec
   errbit_github_plugin
+  errbit_gitlab_plugin
   errbit_plugin
   fabrication
   flowdock
@@ -495,4 +504,4 @@ DEPENDENCIES
   yajl-ruby
 
 BUNDLED WITH
-   1.16.2
+   1.16.5
